@@ -84,7 +84,7 @@ function drawWithData(data){
 
 }
 
-d3.csv("/materials/ThingsIAte-v2.csv",drawWithData);
+d3.csv("./materials/ThingsIAte-v2.csv",drawWithData);
 
 // console.log(myData);
 
