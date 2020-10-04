@@ -10,24 +10,36 @@
 
 <body>
   <svg viewBox="0 0 1000 1000" >
-
-
-    <g transform="translate(50, 50)">
-      <!-- <circle r="10" cx="0" />
-      <circle r="10" cx="120" />
-      <circle r="10" cx="240" />
-      <circle r="10" cx="360" />
-      <circle r="10" cx="840" /> -->
-    </g>
-
-    <g>
-      
-    </g>
   </svg>
-  <div class="status">Click on a circle</div>
+  
+  <nav class="floating-menu">
+    
+    <p class="tablinks" onclick="openTab(event, 'about')">ABOUT</p>
+    <p class="tablinks" onclick="openTab(event, 'howto')">HOW TO READ</p>
+    <p class="tablinks" onclick="openTab(event, 'legend')">TOGGLE LEGEND</p>
+    <!-- <a href="" onclick="">ABOUT</a>
+    <a href="" onclick="">HOW TO READ</a>
+    <a href="" onclick="">TOGGLE LEGEND</a> -->
+  </nav>
+ 
+  <div id="about" class="tabcontent sidecontent">
+    <h2>ABOUT</h2>
+    <p>London is the capital city of England.</p>
+  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-  <!-- <script src="https://d3js.org/d3.v6.min.js"></script> -->
+  <div id="howto" class="tabcontent sidecontent">
+    <h2>HOW TO READ</h2>
+    <p></p>
+  </div>
+
+  <div id="legend" class="tabcontent">
+    <img src= "./materials/legend.png" >
+  </div>
+
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script> -->
+  <script src="http://d3js.org/d3.v4.min.js"></script>
+  
   <script src="./js/main.js"></script>
   
 </body>

@@ -3,7 +3,7 @@ var dateArray = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursda
 
 var dateScale = d3.scalePoint()
 .domain(['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday'])
-.range([0, 840]);
+.range([60, 900]);
 
 var activityScale = d3.scaleQuantize()
 .domain([1, 8])
@@ -16,7 +16,7 @@ var tempScale = d3.scaleOrdinal()
 
 var durationScale = d3.scaleThreshold()
   .domain([2, 6, 11, 31, 61])
-  .range([5, 20,40, 60 ,80,100]);
+  .range([5, 10,20, 40,55,65]);
 // u < 2 is mapped to ‘#ccc’
 // 2 ≤ u < 6 to ‘lightblue’
 // 6 ≤ u < 11 to ‘orange’
@@ -29,10 +29,10 @@ var typeScale = d3.scalePoint()
 .range([0, symbolTypes.length - 1]);
 // symbolTypes[typeScale('liquid')];
 
+// var petalPath = "M 0,0 C -10,-10 -10,-40 0,-50 C 10,-40 10,-10 0,0" ;
 
-var petalPath = "M 0,0 C -10,-10 -10,-40 0,-50 C 10,-40 10,-10 0,0" ;
 
-
+    
 function drawWithData(data){
   console.log(data);
   const mySymbol = d3.select('svg')
@@ -41,7 +41,8 @@ function drawWithData(data){
     .enter()
     .append('g')
     .classed('myShape',true)
-    .attr('transform', (d,i) => 'translate('+ dateScale(d.Date) + ',0)');
+    .attr('transform', (d,i) => 'translate('+ dateScale(d.Date) + ',0)' )
+    ;
     // .classed(data.Temperature,true)
     // .classed('hot',(d)=> d.Temperature==='hot')
     // .classed('warm',(d)=> d.Temperature==='warm')
@@ -51,26 +52,64 @@ function drawWithData(data){
     // .attr('r', 10)
     // .attr('transform', (d,i) => 'translate('+ dateScale(d.Date) + ',' + i*30 +')');
   
+    // mySymbol.on('mouseenter', handleMouseOver);
+    // mySymbol.on('mouseleave', handleMouseLeave);
+    
+    function handleMouseOver(d,i){
+      d3.select(this)
+      .transition()
+      .attr("transform", function() {
+        var str= d3.select(this).attr("transform");
+        str= str.substr(0,str.indexOf("scale") );
+        return str+'scale(3)'
+        
+      });
+    }
 
-    //Format symbol by date
+    
+    function handleMouseOver(d,i) {
+      d3.select(this)
+        .transition()
+        .attr("transform", function() {
+          var str= d3.select(this).attr("transform");
+          str= str.substr(0,str.indexOf("scale") );
+          return str+'scale(1)' 
+        });
+    };
+
+
+
+
+    //Format symbol by date 
     dateArray.forEach( 
       element => 
     mySymbol.filter( d => d.Date===element)
-            .attr('transform', (d,i) => 'translate('+ dateScale(d.Date) + ',' + i*36 +')') 
+            .attr('transform', (d,i) => 'translate('+ dateScale(d.Date) + ',' + (i*23+20) +')') 
     );
 
 
+    // Cook Time - Line Length
+    mySymbol.append('line')
+    .style("stroke", "white")
+    .style("stroke-width", 1)
+    .attr("x1", -10)
+    .attr("y1", 0)
+    .attr("x2", d => -10- durationScale(d.CookTime))
+    .attr("y2", 0); 
 
+    // Eat Duration - Line Length ; Acitivity - Line Color 
+    mySymbol.append('line')
+    .style("stroke", d => activityScale(d.Activity))
+    .style("stroke-width", 1)
+    .attr("x1", 10)
+    .attr("y1", 0)
+    .attr("x2", d => 10+ durationScale(d.Duration))
+    .attr("y2", 0); 
 
-
-    // Acitivity - Line Color
-    mySymbol.append('path')
-    .classed('activity',true)
-    .attr('fill', d => activityScale(d.Activity));
 
     // Type - Shape
     // Temperature - Shape Color
-    var symbolGenerator = d3.symbol().size(80);
+    var symbolGenerator = d3.symbol().size(40);
   
     mySymbol.append('path')
     .classed('temp type',true)
@@ -84,36 +123,42 @@ function drawWithData(data){
 
 }
 
+
+// ORIGIN
 d3.csv("./materials/ThingsIAte-v2.csv",drawWithData);
 
-// console.log(myData);
-
-//day scale to x position
 
 
-  // console.log(dayScale(myData.Date));
-  // console.log(dayScale('Tuesday'));
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks,targetContent;
+  targetContent = document.getElementById(tabName);
 
+  // targetContent.style.display = "block";
 
+  tabcontent = document.getElementsByClassName("tabcontent");
+ 
 
+  // tablinks = document.getElementsByClassName("tablinks");
+  // for (i = 0; i < tablinks.length; i++) {
+  //   tablinks[i].className = tablinks[i].className.replace(" active", "");
+  // }
 
+  // evt.currentTarget.className += " active";
 
-d3.selectAll('circle')
-  .on('mouseover', function(d, i) {
-    d3.select('.status')
-      .text('You clicked on circle ' + i);
-     d3.select(this)
-     .style('fill', 'orange')
-     .attr('transform-origin','center')
-     .attr('transform', 'scale(2)');
-  })
-  .on('mouseout', function(d, i) {
-    d3.select('.status')
-      .text('You clicked on circle ' + i);
-     d3.select(this)
-     .style('fill', 'blue')
-     .attr('transform-origin','center')
-     .attr('transform', 'scale(1)');
-  });
+  if (targetContent.style.opacity === "0") {
+    for (i = 0; i < tabcontent.length; i++) {
+      // tabcontent[i].style.display = "none";
+      tabcontent[i].style.opacity=0;
+    }
+    // targetContent.style.display = "block";
+    targetContent.style.opacity=1;
+   
+  } else {
+    // targetContent.style.display = "none";
+    targetContent.style.opacity=0;
 
+  }
+
+  
+}
  

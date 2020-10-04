@@ -1,5 +1,6 @@
 body {
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    /* font-family: "Helvetica Neue", Helvetica, sans-serif; */
+    font-family: "Avenir", sans-serif;
     font-size: 14px;
     color: #fff;
     background-color: black;
@@ -14,9 +15,66 @@ body {
     left:0;
     height:auto;
     width:100%;
+    
   }
 
+  .floating-menu {
+    padding: 5px;;
+    width: 160px;
+    z-index: 100;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    text-align: right;
+  }
+
+  .floating-menu  p {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+  }
+
+  .floating-menu  p:hover {
+    color: #f1f1f1;
+  }
+  .tabcontent {
+    display: block;
+    opacity: 0;
+    /* visibility: hidden; */
+    -webkit-transition: opacity 300ms ease; 
+    transition: opacity 300ms ease;
+ } 
+
+
+  #about, #howto{
+    height: 100%;
+    width: 30%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  #legend{
+    z-index: 20;
+    position: fixed;
+    bottom: 0px;
+    right: 200px;
+    width:50%; 
+    background-color: none;
+  }
+  #legend img{
+      width:100%; 
+  }
+  
   circle {
     fill: #ddd;
     cursor: pointer;
   }
+
+ 
