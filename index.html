@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 <body>
   <svg viewBox="0 0 1000 1000" >
+   
   </svg>
   
   <nav class="floating-menu">
@@ -24,12 +26,20 @@
  
   <div id="about" class="tabcontent sidecontent">
     <h2>ABOUT</h2>
-    <p>London is the capital city of England.</p>
+    <p><i>A WEEK of THINGS I ATE</i>  is a personal project practicing mundane data collecting and web interaction design. It is also a chance to play around with data viz tools like d3js I used in this project. </p>
+  
   </div>
 
   <div id="howto" class="tabcontent sidecontent">
     <h2>HOW TO READ</h2>
-    <p></p>
+    <!-- <img src="./materials/howto1.png" alt="" > -->
+    <div class="numbertext">1 / 3</div>
+    <div class="howtocontent">
+    <a class="btn" id="pre" onclick="imgshow(-1)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    <img id="howtoimg" src='./materials/howto1.png'></img>
+  
+    <a class="btn"id="next" onclick="imgshow(1)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+  </div>
   </div>
 
   <div id="legend" class="tabcontent">
