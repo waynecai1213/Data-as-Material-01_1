@@ -7,7 +7,7 @@ var dateScale = d3.scalePoint()
 
 var activityScale = d3.scaleQuantize()
   .domain([1, 8])
-  .range(['#4075A0', '#C96579', '#31DBC7', '#FFE95C', '#E6AA75', '#698F3F', '#EDC0DB', '#C5E0E7']);
+  .range(['#4075A0', '#C96579', '#40DDCB', '#FFE95C', '#E6AA75', '#698F3F', '#8F6689', '#C5E1E7']);
 
 var tempScale = d3.scaleOrdinal()
   .domain(['hot', 'warm', 'room temp', 'cool', 'cold'])
@@ -111,7 +111,7 @@ function drawWithData(data) {
   // Cook Time - Line Length
   mySymbol.append('line')
     .style("stroke", "white")
-    .style("stroke-width", 1.2)
+    .style("stroke-width", 1.6)
     .attr("x1", -8)
     .attr("y1", 0)
     .attr("x2", d => -8- durationScale(d.CookTime))
@@ -120,7 +120,7 @@ function drawWithData(data) {
   // Eat Duration - Line Length ; Acitivity - Line Color 
   mySymbol.append('line')
     .style("stroke", d => activityScale(d.Activity))
-    .style("stroke-width", 1.2)
+    .style("stroke-width", 1.6)
     .attr("x1", 8)
     .attr("y1", 0)
     .attr("x2", d => 8 + durationScale(d.Duration))
