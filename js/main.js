@@ -90,7 +90,7 @@ function drawWithData(data) {
   function handleMouseOver2(d, i) {
     d3.select(this)
       .transition()
-      .attr("transform", "translate(600,360)" + 'scale(4)');
+      .attr("transform", "translate(600,340)" + 'scale(4)');
   }
 
 
@@ -203,4 +203,9 @@ function imgshow(xflip) {
   document.getElementById('howtoimg').src = baseURL + '/' + imgArray[curImage - 1];
 }
 
-
+function enterpage(){
+  var page;
+  page=document.getElementsByClassName("frontpage");
+  page[0].style.opacity=0;
+  setTimeout ( ()=>page[0].style.display='none',500 )
+}
